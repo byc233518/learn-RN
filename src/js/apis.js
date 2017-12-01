@@ -4,7 +4,7 @@ const ApiMixin = {
 	},
 	async getMoviesFromApi() {
 		try {
-			let response = await fetch('https://facebook.github.io/react-native/movies.json');
+			let response = await fetch('https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json');
 			let responseJson = await response.json();
 			return responseJson.movies;
 		} catch(error) {
