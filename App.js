@@ -11,6 +11,8 @@ import {
   Text,
   View
 } from 'react-native';
+import Apis from './src/js/apis'
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,11 +22,26 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: '原来的文字'
+    }
+  }
+
+  componentWillMount() {
+    Apis.getMoviesFromApi().then((res) => {
+      this.setState({
+        data: JSON.stringify(res)
+      })
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          {this.state.data}
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js
